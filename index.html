@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal | Aviva Capital Institutional Portal</title>
+  <meta name="description" content="Complete your 3-step paperless verified client registration with Aadhaar e-KYC and loan requirements at Aviva Capital.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-primary: #0369a1;
+      --color-primary-container: #0284c7;
+      --color-primary-fixed: #e0f2fe;
+      --color-sky: #38bdf8;
+      --color-secondary: #0284c7;
+      --color-secondary-container: #bae6fd;
+      --color-bg: #f0f7ff;
+      --color-surface: #ffffff;
+      --color-surface-low: #f0f9ff;
+      --color-surface-high: #e0f2fe;
+      --color-border: #bae6fd;
+      --color-border-light: #e0f2fe;
+      --color-text-main: #0f172a;
+      --color-text-muted: #334155;
+      --color-text-light: #64748b;
+      --color-success: #0284c7;
+      --color-warning: #f59e0b;
+      --color-danger: #ef4444;
+      --font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 2px 10px rgba(3, 105, 161, 0.04);
+      --shadow-md: 0 8px 24px rgba(3, 105, 161, 0.08);
+      --shadow-lg: 0 16px 40px rgba(3, 105, 161, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--color-text-main);
+      background-color: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Top utility bar */
+    .top-bar {
+      background-color: #e0f2fe;
+      padding: 6px 0;
+      font-size: 0.8rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .top-bar-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .top-bar-badge { color: var(--color-primary); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+
+    /* Header */
+    header {
+      background-color: #ffffff;
+      color: var(--color-primary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(3, 105, 161, 0.06);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; position: relative; }
+    .brand-logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .brand-monogram {
+      height: 40px; width: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: #ffffff; font-weight: 900; font-size: 18px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+      border: 1.5px solid rgba(56, 189, 248, 0.6);
+    }
+    .brand-title { font-size: 1.3rem; font-weight: 900; color: #072545; letter-spacing: -0.02em; line-height: 1; }
+    .brand-title span { color: var(--color-primary-container); }
+    .brand-subtitle { font-size: 0.68rem; color: var(--color-text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; font-weight: 700; }
+
+    .menu-toggle-btn { background: #0369a1; border: none; border-radius: 8px; width: 42px; height: 42px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+    .menu-toggle-btn span { display: block; width: 22px; height: 3px; background: #fff; border-radius: 2px; }
+
+    .btn {
+      font-family: var(--font-family); border-radius: var(--radius-sm); cursor: pointer;
+      transition: all 0.2s ease; border: none; justify-content: center; align-items: center;
+      gap: 8px; padding: 10px 20px; font-size: 0.9rem; font-weight: 700; line-height: 1;
+      text-decoration: none; display: inline-flex;
+    }
+    .btn-primary { background-color: var(--color-primary); color: #fff; box-shadow: 0 4px 14px rgba(3, 105, 161, 0.2); }
+    .btn-primary:hover { background-color: var(--color-primary-container); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(3, 105, 161, 0.3); }
+    .btn-outline { border: 1.5px solid var(--color-border); color: var(--color-primary); background-color: #fff; }
+    .btn-outline:hover { border-color: var(--color-primary); background-color: var(--color-surface-low); transform: translateY(-2px); }
+
+    /* Layout */
+    .register-wrapper { background-color: var(--color-bg); flex: 1; padding: 40px 0 60px; }
+    .register-container-card {
+      background: #ffffff; border-radius: var(--radius-lg);
+      border: 1.5px solid var(--color-border); box-shadow: var(--shadow-lg);
+      overflow: hidden; display: grid; grid-template-columns: 360px 1fr;
+    }
+
+    /* Hero Left Sidebar */
+    .register-hero-panel {
+      background: linear-gradient(165deg, #072545 0%, #0369a1 60%, #0284c7 100%);
+      color: #ffffff; padding: 36px 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative;
+    }
+    .checklist-step {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      border-radius: var(--radius-sm); margin-bottom: 12px; transition: all 0.2s ease; background: rgba(255, 255, 255, 0.06);
+    }
+    .checklist-step.active { background: rgba(56, 189, 248, 0.2); border-left: 4px solid var(--color-sky); }
+    .step-bubble {
+      width: 28px; height: 28px; border-radius: var(--radius-full);
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.2); color: #ffffff;
+    }
+    .checklist-step.active .step-bubble { background: var(--color-sky); color: #072545; }
+
+    /* Form Right Panel */
+    .register-form-panel { padding: 36px 40px; background: #ffffff; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    .form-control {
+      width: 100%; padding: 12px 14px; font-family: inherit; font-size: 0.9rem;
+      border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); outline: none;
+      transition: all 0.2s ease; background-color: #f8fbfe;
+    }
+    .form-control:focus { border-color: var(--color-primary); background-color: #ffffff; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
+    .register-2col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* Upload zone styling */
+    .upload-box {
+      border: 1.5px dashed var(--color-border); border-radius: var(--radius-md); padding: 12px;
+      background-color: var(--color-surface-low); display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 110px; transition: all 0.2s ease; margin-bottom: 14px;
+    }
+    .upload-box.uploaded { border-color: #0284c7; background-color: #f0f9ff; }
+
+    /* Loan / EMI Card */
+    .emi-card {
+      background: linear-gradient(135deg, #072545 0%, #0369a1 100%); color: #ffffff;
+      border-radius: var(--radius-md); padding: 16px 20px; display: flex; justify-content: space-between;
+      align-items: center; margin-top: 14px; border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .emi-amount { font-size: 1.45rem; font-weight: 900; color: var(--color-sky); }
+
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 800; }
+    .status-pending { background-color: #fef3c7; color: #b45309; border: 1px solid #f59e0b; }
+    .status-approved { background-color: #dcfce7; color: #15803d; border: 1px solid #22c55e; }
+
+    .dropdown-menu {
+      position: absolute; right: 24px; top: 70px; background: #ffffff; border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-lg); display: none; flex-direction: column; width: 240px; z-index: 1001; overflow: hidden;
+    }
+    .dropdown-menu button { background: none; border: none; padding: 12px 16px; text-align: left; font-family: inherit; font-weight: 700; font-size: 0.85rem; color: var(--color-text-main); cursor: pointer; border-bottom: 1px solid #f1f5f9; transition: background 0.2s; }
+    .dropdown-menu button:hover { background: #f0f9ff; color: var(--color-primary); }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(7, 37, 69, 0.7); backdrop-filter: blur(4px); z-index: 2000;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-card { background: #ffffff; border-radius: var(--radius-md); max-width: 600px; width: 100%; overflow: hidden; box-shadow: var(--shadow-lg); }
+    .modal-header { background: #072545; color: #fff; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+
+    /* Footer */
+    footer { background-color: #072545; color: #ffffff; padding: 56px 0 28px; border-top: 4px solid var(--color-sky); font-size: 0.85rem; }
+
+    /* Stylish Cards Grid */
+    .stylish-emi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .stylish-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.08);
+      border: 1px solid #bae6fd;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .stylish-card:hover { transform: translateY(-3px); }
+    .stylish-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, #0284c7, #38bdf8);
+    }
+    .stylish-card-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+    .stylish-card-value {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #072545;
+    }
+
+    @media (max-width: 860px) {
+      .register-container-card { grid-template-columns: 1fr; }
+      .register-form-panel { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <span>🛡️</span>
+        <span>Aviva Capital Finance Ltd. | RBI Registered NBFC Corporate Portal</span>
+      </div>
+      <div style="font-weight: 600; color: var(--color-primary);">
+        Toll Free: 1800-425-9900 | Mon-Sat 9AM-7PM
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="brand-logo-group">
+        <div class="brand-monogram">AC</div>
+        <div>
+          <div class="brand-title">AVIVA <span>CAPITAL</span></div>
+          <div class="brand-subtitle">Institutional Credit & Finance</div>
+        </div>
+      </a>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button id="header-login-btn" onclick="openLoginModal()" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">Client Login</button>
+        <button id="header-menu-btn" class="menu-toggle-btn" style="display: none;" onclick="toggleDropdownMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Dashboard dropdown menu -->
+      <div id="nav-dropdown-menu" class="dropdown-menu">
+        <button onclick="openClientDashboard(); toggleDropdownMenu();">🏠 Go to Dashboard</button>
+        <button onclick="switchDashboardTab('profile'); toggleDropdownMenu();">📋 Personal Information</button>
+        <button onclick="switchDashboardTab('wallet'); toggleDropdownMenu();">💰 Wallet</button>
+        <button onclick="switchDashboardTab('emi'); toggleDropdownMenu();">📊 EMI Details</button>
+        <button onclick="logoutClient();" style="color: #ef4444;">🔒 Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Register Main Container -->
+  <main class="register-wrapper">
+    <div class="container">
+      <div class="register-container-card" id="main-portal-card">
+
+        <!-- Left Hero Panel -->
+        <div class="register-hero-panel" id="hero-panel-side">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+              <div style="height: 34px; width: 34px; border-radius: 8px; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px;">
+                AC
+              </div>
+              <span style="font-size: 1.15rem; font-weight: 900; letter-spacing: -0.02em;">
+                AVIVA <span style="color: var(--color-sky);">CAPITAL</span>
+              </span>
+            </div>
+
+            <h2 style="font-size: 1.6rem; font-weight: 900; line-height: 1.25; margin-bottom: 12px; color: #ffffff;">
+              Paperless Instant Credit Registration
+            </h2>
+            <p style="font-size: 0.88rem; color: #bae6fd; margin-bottom: 24px; line-height: 1.5;">
+              Fast-track institutional verification with Aadhaar-linked e-KYC.
+            </p>
+
+            <div id="registration-checklist-group">
+              <div class="checklist-step active" id="badge-step-1">
+                <span class="step-bubble">1</span>
+                <div>
+                  <div style="font-size: 0.85rem; font-weight: 800; color: #fff;">Contact & Identity</div>
+                  <div style="font-size: 0.72rem; color: #bae6fd;">Full Name, Phone & Email</div>
+                </div>
+              </div>
+              <div class="checklist-step" id="badge-step-2" style="opacity: 0.7;">
+                <span class="step-bubble">2</span>
+                <div>
+                  <div style="font-size: 0.85rem; font-weight: 800; color: #fff;">Aadhaar & Nominee KYC</div>
+                  <div style="font-size: 0.72rem; color: #bae6fd;">Upload documents with preview</div>
+                </div>
+              </div>
+              <div class="checklist-step" id="badge-step-3" style="opacity: 0.7;">
+                <span class="step-bubble">3</span>
+                <div>
+                  <div style="font-size: 0.85rem; font-weight: 800; color: #fff;">Loan Spec & Bank Info</div>
+                  <div style="font-size: 0.72rem; color: #bae6fd;">Select loan amount & bank details</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.15);">
+            <div style="font-size: 0.78rem; color: #bae6fd;">256-bit Bank Grade Encrypted</div>
+            <div style="font-size: 0.75rem; color: #e0f2fe; margin-top: 2px;">Regulated Non-Banking Financial Corp</div>
+          </div>
+        </div>
+
+        <!-- Right Panel Container -->
+        <div class="register-form-panel" id="right-panel-container">
+          
+          <!-- REGISTRATION VIEW WRAPPER -->
+          <div id="registration-view-wrapper">
+            <div style="margin-bottom: 18px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+                <h1 id="step-title-display" style="font-size: 1.6rem; font-weight: 900; color: var(--color-primary);">Client Registration</h1>
+                <span id="step-pill-display" style="font-size: 0.78rem; font-weight: 800; color: var(--color-primary); background-color: var(--color-surface-low); padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid var(--color-border);">Step 1 of 3</span>
+              </div>
+              <p id="step-desc-display" style="color: var(--color-text-muted); font-size: 0.88rem;">Enter the client's basic contact details to get started.</p>
+            </div>
+
+            <!-- Progress bar -->
+            <div style="width: 100%; height: 6px; background-color: var(--color-border-light); border-radius: var(--radius-full); margin-bottom: 24px; overflow: hidden;">
+              <div id="progress-bar-inner" style="height: 100%; width: 33.33%; background-color: var(--color-primary); transition: width 0.3s ease;"></div>
+            </div>
+
+            <!-- Error Alert -->
+            <div id="form-error-alert" style="display: none; background-color: #fee2e2; color: #b91c1c; border: 1px solid #f87171; border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 18px; font-size: 0.85rem; font-weight: 600;"></div>
+
+            <!-- Success Screen -->
+            <div id="registration-success-card" style="display: none; background-color: #f0fdf4; border: 1.5px solid #22c55e; border-radius: var(--radius-md); padding: 32px 20px; text-align: center;">
+              <div style="font-size: 52px; color: #16a34a; margin-bottom: 12px;">✓</div>
+              <h4 style="font-size: 1.4rem; color: #15803d; font-weight: 900; margin-bottom: 8px;">Registration Completed!</h4>
+              <p id="success-message-text" style="font-size: 0.95rem; color: var(--color-text-main); margin-bottom: 20px;">Client record created with verified Aadhaar credentials. Account submitted.</p>
+              <button onclick="openClientDashboard()" class="btn btn-primary" style="font-size: 0.9rem;">Open Client Dashboard →</button>
+            </div>
+
+            <!-- Form Element -->
+            <form id="registration-form" onsubmit="event.preventDefault();">
+
+              <!-- STEP 1: Contact Details -->
+              <div id="step-1-container">
+                <div class="form-group">
+                  <label>👤 Full Legal Name *</label>
+                  <input type="text" id="input-full-name" required placeholder="Enter client's legal name" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>✉️ Email Address (Account Username) *</label>
+                  <input type="email" id="input-email" required placeholder="client@example.com" class="form-control">
+                  <span style="font-size: 0.75rem; color: var(--color-text-light); display: block; margin-top: 4px;">ℹ️ This email will serve as the account login username.</span>
+                </div>
+                <div class="form-group">
+                  <label>📱 Mobile Phone Number *</label>
+                  <input type="tel" id="input-phone" required placeholder="+91 98765 43210" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>📅 Date of Birth *</label>
+                  <input type="date" id="input-dob" required class="form-control">
+                </div>
+                <div class="form-group" style="margin-bottom: 24px;">
+                  <label>🏠 Residential Address *</label>
+                  <textarea id="input-address" required placeholder="Enter complete residential address" class="form-control" style="min-height: 75px; resize: vertical;"></textarea>
+                </div>
+                <button type="button" onclick="handleNextStep()" class="btn btn-primary" style="width: 100%; padding: 14px;">Continue to Step 2 (KYC & Nominee) →</button>
+              </div>
+
+              <!-- STEP 2: KYC & Nominee Uploads -->
+              <div id="step-2-container" style="display: none;">
+                <h3 style="font-size: 0.98rem; font-weight: 800; color: var(--color-primary); margin-bottom: 12px;">🪪 Client Identity Uploads</h3>
+                
+                <div class="register-2col-grid" style="margin-bottom: 14px;">
+                  <!-- Aadhaar Front -->
+                  <div class="upload-box" id="box-aadharFront">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                      <span style="font-size: 0.78rem; font-weight: 700;">Aadhaar Front *</span>
+                      <span id="tag-aadharFront" style="display: none; font-size: 0.65rem; background-color: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px; font-weight: 800;">✓ Ready</span>
+                    </div>
+                    <div id="preview-aadharFront" style="display: none;">
+                      <div style="position: relative; width: 100%; height: 75px; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1px solid rgba(0,0,0,0.1);" onclick="openZoomModal('aadharFront', 'Aadhaar Front Side')">
+                        <img id="img-aadharFront" src="" alt="Aadhaar Front" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; bottom: 3px; right: 3px; background: rgba(7,37,69,0.85); color: #fff; border-radius: 3px; padding: 1px 5px; font-size: 0.6rem; font-weight: 700;">🔍 Zoom</div>
+                      </div>
+                      <div style="display: flex; gap: 4px; justify-content: center; margin-top: 5px;">
+                        <button type="button" onclick="removeImage('aadharFront')" style="background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; border-radius: 4px; padding: 2px 8px; font-size: 0.68rem; font-weight: 700; cursor: pointer;">✕ Remove</button>
+                      </div>
+                    </div>
+                    <label id="placeholder-aadharFront" style="cursor: pointer; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px;">
+                      <div style="font-size: 20px; margin-bottom: 4px;">📤</div>
+                      <span style="font-size: 0.75rem; color: var(--color-primary); font-weight: 700;">+ Upload Front</span>
+                      <input type="file" accept="image/*" style="display: none;" onchange="processImageUpload(event, 'aadharFront')">
+                    </label>
+                  </div>
+
+                  <!-- Aadhaar Back -->
+                  <div class="upload-box" id="box-aadharBack">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                      <span style="font-size: 0.78rem; font-weight: 700;">Aadhaar Back *</span>
+                      <span id="tag-aadharBack" style="display: none; font-size: 0.65rem; background-color: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px; font-weight: 800;">✓ Ready</span>
+                    </div>
+                    <div id="preview-aadharBack" style="display: none;">
+                      <div style="position: relative; width: 100%; height: 75px; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1px solid rgba(0,0,0,0.1);" onclick="openZoomModal('aadharBack', 'Aadhaar Back Side')">
+                        <img id="img-aadharBack" src="" alt="Aadhaar Back" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; bottom: 3px; right: 3px; background: rgba(7,37,69,0.85); color: #fff; border-radius: 3px; padding: 1px 5px; font-size: 0.6rem; font-weight: 700;">🔍 Zoom</div>
+                      </div>
+                      <div style="display: flex; gap: 4px; justify-content: center; margin-top: 5px;">
+                        <button type="button" onclick="removeImage('aadharBack')" style="background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; border-radius: 4px; padding: 2px 8px; font-size: 0.68rem; font-weight: 700; cursor: pointer;">✕ Remove</button>
+                      </div>
+                    </div>
+                    <label id="placeholder-aadharBack" style="cursor: pointer; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px;">
+                      <div style="font-size: 20px; margin-bottom: 4px;">📤</div>
+                      <span style="font-size: 0.75rem; color: var(--color-primary); font-weight: 700;">+ Upload Back</span>
+                      <input type="file" accept="image/*" style="display: none;" onchange="processImageUpload(event, 'aadharBack')">
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Client Photo Upload -->
+                <div class="upload-box" id="box-photo" style="margin-bottom: 18px; min-height: 90px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <span style="font-size: 0.78rem; font-weight: 700;">👤 Client Profile Photo *</span>
+                    <span id="tag-photo" style="display: none; font-size: 0.65rem; background-color: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px; font-weight: 800;">✓ Ready</span>
+                  </div>
+                  <div id="preview-photo" style="display: none; align-items: center; gap: 12px;">
+                    <img id="img-photo" src="" alt="Client Photo" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-primary);">
+                    <button type="button" onclick="removeImage('photo')" style="background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; border-radius: 4px; padding: 3px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer;">✕ Remove</button>
+                  </div>
+                  <label id="placeholder-photo" style="cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px;">
+                    <span style="font-size: 18px;">📸</span>
+                    <span style="font-size: 0.8rem; color: var(--color-primary); font-weight: 700;">+ Upload Profile Photo</span>
+                    <input type="file" accept="image/*" style="display: none;" onchange="processImageUpload(event, 'photo')">
+                  </label>
+                </div>
+
+                <!-- Nominee Section -->
+                <div style="background-color: #f0f7ff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 14px; margin-bottom: 18px;">
+                  <h4 style="font-size: 0.88rem; font-weight: 800; color: var(--color-primary); margin-bottom: 10px;">👥 Nominee Particulars</h4>
+                  <div class="register-2col-grid">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                      <label style="font-size: 0.78rem;">Nominee Legal Name *</label>
+                      <input type="text" id="input-nominee-name" required placeholder="Nominee name" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 10px;">
+                      <label style="font-size: 0.78rem;">Nominee Mobile *</label>
+                      <input type="tel" id="input-nominee-phone" required placeholder="+91 Nominee phone" class="form-control">
+                    </div>
+                  </div>
+
+                  <!-- Nominee Aadhaar Upload -->
+                  <div class="upload-box" id="box-nomineeAadhar" style="min-height: 85px; margin-top: 6px; margin-bottom: 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                      <span style="font-size: 0.78rem; font-weight: 700;">Nominee Aadhaar Front *</span>
+                      <span id="tag-nomineeAadhar" style="display: none; font-size: 0.65rem; background-color: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 4px; font-weight: 800;">✓ Ready</span>
+                    </div>
+                    <div id="preview-nomineeAadhar" style="display: none; align-items: center; gap: 12px;">
+                      <img id="img-nomineeAadhar" src="" alt="Nominee Aadhaar" style="height: 45px; border-radius: 4px; object-fit: cover;">
+                      <button type="button" onclick="removeImage('nomineeAadhar')" style="background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; border-radius: 4px; padding: 3px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer;">✕ Remove</button>
+                    </div>
+                    <label id="placeholder-nomineeAadhar" style="cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px;">
+                      <span style="font-size: 16px;">📄</span>
+                      <span style="font-size: 0.78rem; color: var(--color-primary); font-weight: 700;">+ Upload Nominee Aadhaar Front</span>
+                      <input type="file" accept="image/*" style="display: none;" onchange="processImageUpload(event, 'nomineeAadhar')">
+                    </label>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                  <button type="button" onclick="goToStep(1)" class="btn btn-outline" style="flex: 1; padding: 12px;">← Back</button>
+                  <button type="button" onclick="handleNextStep()" class="btn btn-primary" style="flex: 2; padding: 12px;">Continue to Step 3 (Loan Spec) →</button>
+                </div>
+              </div>
+
+              <!-- STEP 3: Loan Parameters & Password -->
+              <div id="step-3-container" style="display: none;">
+                <h3 style="font-size: 0.98rem; font-weight: 800; color: var(--color-primary); margin-bottom: 12px;">💼 Employment & Facility Requirements</h3>
+
+                <div class="register-2col-grid">
+                  <div class="form-group">
+                    <label>Employment Type</label>
+                    <div style="display: flex; gap: 8px;">
+                      <button type="button" id="btn-salaried" class="btn btn-primary" style="flex: 1; font-size: 0.8rem; padding: 8px;" onclick="setEmploymentType('Salaried')">Salaried</button>
+                      <button type="button" id="btn-self-employed" class="btn btn-outline" style="flex: 1; font-size: 0.8rem; padding: 8px;" onclick="setEmploymentType('Self-Employed')">Self-Employed</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Net Monthly Income (₹)</label>
+                    <input type="number" id="input-salary" value="65000" class="form-control">
+                  </div>
+                </div>
+
+                <!-- Interactive Loan Calculator Box -->
+                <div style="background-color: #f0f7ff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 18px;">
+                  <div class="register-2col-grid">
+                    <div class="form-group" style="margin-bottom: 8px;">
+                      <label>Loan Amount (₹)</label>
+                      <input type="number" id="input-loan-amount" value="500000" step="25000" class="form-control" oninput="calculateEMI()">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 8px;">
+                      <label>Tenure (Months)</label>
+                      <select id="select-tenure" class="form-control" onchange="calculateEMI()">
+                        <option value="12">12 Months (1 Yr)</option>
+                        <option value="24" selected>24 Months (2 Yrs)</option>
+                        <option value="36">36 Months (3 Yrs)</option>
+                        <option value="48">48 Months (4 Yrs)</option>
+                        <option value="60">60 Months (5 Yrs)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="emi-card">
+                    <span style="font-size: 0.85rem; color: #bae6fd;">Estimated Monthly EMI (@11.9% p.a.)</span>
+                    <span class="emi-amount" id="display-emi-amount">₹23,514 / mo</span>
+                  </div>
+                </div>
+
+                <!-- Bank Details -->
+                <div style="background-color: #f0f7ff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 14px; margin-bottom: 18px;">
+                  <h4 style="font-size: 0.88rem; font-weight: 800; color: var(--color-primary); margin-bottom: 10px;">🏦 Bank Account Details</h4>
+                  <div class="register-2col-grid">
+                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Bank Name *</label><input type="text" id="input-bank-name" placeholder="e.g. SBI / HDFC Bank" class="form-control"></div>
+                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Account Type *</label>
+                      <select id="input-bank-type" class="form-control">
+                        <option value="Savings Account" selected>Savings Account</option>
+                        <option value="Current Account">Current Account</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="register-2col-grid">
+                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Account Number *</label><input type="text" id="input-bank-acc" placeholder="Bank account number" class="form-control"></div>
+                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">IFSC Code *</label><input type="text" id="input-bank-ifsc" placeholder="IFSC Code" class="form-control"></div>
+                  </div>
+                </div>
+
+                <!-- Credentials Setup -->
+                <div style="background-color: #ffffff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+                  <div style="margin-bottom: 10px;">
+                    <h4 style="font-size: 0.9rem; font-weight: 800; color: var(--color-primary);">🔐 Portal Credentials Setup</h4>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label style="font-size: 0.78rem;">Username (Auto-synced)</label>
+                    <input type="email" id="input-synced-email" readonly class="form-control" style="background-color: #e0f2fe; font-weight: 700; cursor: not-allowed;">
+                  </div>
+                  <div class="register-2col-grid">
+                    <div class="form-group" style="margin: 0;">
+                      <label style="font-size: 0.78rem;">Create Password *</label>
+                      <input type="password" id="input-password" required placeholder="Min 6 characters" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin: 0;">
+                      <label style="font-size: 0.78rem;">Confirm Password *</label>
+                      <input type="password" id="input-confirm-password" required placeholder="Re-enter password" class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                  <button type="button" onclick="goToStep(2)" class="btn btn-outline" style="flex: 1; padding: 12px;">← Back</button>
+                  <button type="button" onclick="handleNextStep()" class="btn btn-primary" style="flex: 2; padding: 12px;">Complete Registration ✓</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- CLIENT DASHBOARD WRAPPER -->
+          <div id="client-dashboard-wrapper" style="display: none;">
+            
+            <!-- Dashboard Home View (Colorful & Stylish EMI Cards) -->
+            <div id="dash-tab-dashboard" style="display: block;">
+              <div style="background: linear-gradient(165deg, #072545 0%, #0369a1 60%, #0284c7 100%); color: #ffffff; padding: 36px 28px; border-radius: var(--radius-md); text-align: center; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px;">
+                  <div style="height: 34px; width: 34px; border-radius: 8px; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-weight: 900;">AC</div>
+                  <span style="font-size: 1.15rem; font-weight: 900;">AVIVA <span style="color: var(--color-sky);">CAPITAL</span></span>
+                </div>
+                <h1 id="dash-client-name-id" style="font-size: 1.5rem; font-weight: 900; line-height: 1.25; margin-bottom: 8px;">Client: -</h1>
+                <p style="font-size: 0.88rem; color: #bae6fd; margin-bottom: 16px;">Client Portal Dashboard</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; margin-top: 10px;">
+                  <div id="client-approval-badge-container"></div>
+                  <div style="font-size: 0.9rem; font-weight: 700; color: #e0f2fe;" id="display-consolidation-line">
+                    Loan Consolidation Approval: Pending
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modern & Stylish EMI Cards -->
+              <div style="background-color: #ffffff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 22px; box-shadow: var(--shadow-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 2px solid #e0f2fe; padding-bottom: 10px;">
+                  <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--color-primary); display: flex; align-items: center; gap: 8px;">
+                    <span>📊</span> EMI Details & Loan Summary
+                  </h3>
+                  <span style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800;">Live Loan Feed</span>
+                </div>
+
+                <div class="stylish-emi-grid">
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">🆔 Client ID</div>
+                    <div class="stylish-card-value" id="home-client-id" style="color: #0369a1;">-</div>
+                  </div>
+
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">👤 Client Name</div>
+                    <div class="stylish-card-value" id="home-client-name" style="font-size: 1.1rem;">-</div>
+                  </div>
+
+                  <div class="stylish-card" style="background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);">
+                    <div class="stylish-card-title">💰 Sanctioned Amount</div>
+                    <div class="stylish-card-value" id="home-loanamt" style="color: #0284c7;">-</div>
+                  </div>
+
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">📅 Loan Tenure</div>
+                    <div class="stylish-card-value">24 Months</div>
+                  </div>
+
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">📈 Interest Rate</div>
+                    <div class="stylish-card-value" style="color: #0284c7;">11.9% <span style="font-size: 0.8rem; font-weight: 600;">p.a.</span></div>
+                  </div>
+
+                  <div class="stylish-card" style="background: linear-gradient(135deg, #072545 0%, #0369a1 100%); color: #fff;">
+                    <div class="stylish-card-title" style="color: #bae6fd;">💳 Estimated Monthly EMI</div>
+                    <div class="stylish-card-value" style="color: #38bdf8; font-size: 1.35rem;">₹23,514 <span style="font-size: 0.75rem; color: #fff; font-weight: 400;">/ mo</span></div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 18px; padding: 14px; background: #f0f9ff; border-radius: 10px; border-left: 4px solid #0284c7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                  <span style="font-size: 0.88rem; font-weight: 700; color: #072545;">Current Loan Verification Status:</span>
+                  <span id="home-status-text" style="font-weight: 900; font-size: 0.95rem; color: #b45309; background: #fff; padding: 4px 12px; border-radius: 8px; border: 1px solid #f59e0b;">Pending Verification</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 1: Personal Information -->
+            <div id="dash-tab-profile" style="display: none;">
+              <div style="background-color: #ffffff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 2px solid #e0f2fe; padding-bottom: 10px;">
+                  <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--color-primary); display: flex; align-items: center; gap: 8px;">
+                    <span>📋</span> Registered Personal & Bank Information
+                  </h3>
+                  <span style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800;">Verified Profile</span>
+                </div>
+
+                <!-- Client Basic Details -->
+                <div class="stylish-emi-grid" style="margin-bottom: 16px;">
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">🆔 CLIENT ID</div>
+                    <div class="stylish-card-value" style="color: #0369a1;" id="info-id">AC-1001</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">👤 FULL LEGAL NAME</div>
+                    <div class="stylish-card-value" id="info-name">-</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">📅 DATE OF BIRTH</div>
+                    <div class="stylish-card-value" id="info-dob">-</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">📱 PHONE NUMBER</div>
+                    <div class="stylish-card-value" id="info-phone">-</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">✉️ EMAIL / USER ID</div>
+                    <div class="stylish-card-value" style="font-size: 0.95rem; word-break: break-all;" id="info-email">-</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">💼 EMPLOYMENT TYPE</div>
+                    <div class="stylish-card-value" id="info-employment">-</div>
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div style="background: #f8fbfe; padding: 14px 16px; border-radius: 12px; border: 1px solid #e0f2fe; margin-bottom: 16px;">
+                  <div style="font-size: 0.75rem; color: #64748b; font-weight: 800; margin-bottom: 4px;">🏠 REGISTERED RESIDENTIAL ADDRESS</div>
+                  <div style="font-size: 0.95rem; font-weight: 700; color: #334155;" id="info-address">-</div>
+                </div>
+
+                <!-- Nominee Details Card -->
+                <div style="background: #f0f7ff; padding: 18px; border-radius: 14px; border: 1.5px solid #bae6fd; margin-bottom: 16px;">
+                  <h4 style="font-size: 0.9rem; font-weight: 900; color: #0284c7; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                    <span>👥</span> NOMINEE PARTICULARS
+                  </h4>
+                  <div class="stylish-emi-grid" style="margin-top: 0;">
+                    <div class="stylish-card">
+                      <div class="stylish-card-title">Nominee Name</div>
+                      <div class="stylish-card-value" id="info-nominee-name">-</div>
+                    </div>
+                    <div class="stylish-card">
+                      <div class="stylish-card-title">Nominee Mobile</div>
+                      <div class="stylish-card-value" id="info-nominee-phone">-</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bank Details Card -->
+                <div style="background: #f0f7ff; padding: 18px; border-radius: 14px; border: 1.5px solid #bae6fd;">
+                  <h4 style="font-size: 0.9rem; font-weight: 900; color: #0284c7; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                    <span>🏦</span> DISBURSEMENT BANK DETAILS
+                  </h4>
+                  <div class="stylish-emi-grid" style="margin-top: 0;">
+                    <div class="stylish-card">
+                      <div class="stylish-card-title">Bank Name</div>
+                      <div class="stylish-card-value" id="info-bank">-</div>
+                    </div>
+                    <div class="stylish-card">
+                      <div class="stylish-card-title">Account Type</div>
+                      <div class="stylish-card-value" id="info-bank-type">Savings Account</div>
+                    </div>
+                    <div class="stylish-card">
+                      <div class="stylish-card-title">Account Number</div>
+                      <div class="stylish-card-value" style="color: #0369a1;" id="info-acc">-</div>
+                    </div>
+                    <div class="stylish-card">
+                      <div class="stylish-card-title">IFSC Code</div>
+                      <div class="stylish-card-value" id="info-ifsc">-</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Tab 2: Wallet -->
+            <div id="dash-tab-wallet" style="display: none;">
+              <div style="background: linear-gradient(135deg, #072545 0%, #0369a1 100%); color: #fff; border-radius: var(--radius-md); padding: 24px; margin-bottom: 16px; text-align: center; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);">
+                <div style="font-size: 0.85rem; color: #bae6fd; margin-bottom: 6px;">Available Wallet Balance</div>
+                <div style="font-size: 2.5rem; font-weight: 900; color: var(--color-sky);" id="display-wallet-balance">₹0</div>
+                <p style="font-size: 0.78rem; color: #e0f2fe; margin-top: 8px;">Admin updated credit balance will appear here live.</p>
+              </div>
+
+              <div style="background-color: #ffffff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 22px; box-shadow: var(--shadow-md);">
+                <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--color-primary); margin-bottom: 14px;">💸 Secure Fund Transfer</h3>
+                
+                <div id="wallet-status-notice" style="display: none; padding: 14px; border-radius: 10px; margin-bottom: 16px; font-weight: 800; font-size: 0.9rem; text-align: center; border: 1.5px solid transparent;"></div>
+
+                <!-- Withdrawal Bank Details Display Box -->
+                <div style="background: #f8fbfe; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;">
+                  <div style="font-size: 0.78rem; font-weight: 800; color: var(--color-primary); margin-bottom: 8px;">📌 Transfer Destination Bank Account:</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem;">
+                    <div><strong>Bank:</strong> <span id="withdraw-bank-name">-</span></div>
+                    <div><strong>A/C Type:</strong> <span id="withdraw-bank-type">-</span></div>
+                    <div><strong>A/C No:</strong> <span id="withdraw-bank-acc">-</span></div>
+                    <div><strong>IFSC:</strong> <span id="withdraw-bank-ifsc">-</span></div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Withdraw Amount (₹)</label>
+                  <input type="number" id="input-withdraw-amount" placeholder="Enter amount to withdraw" class="form-control">
+                </div>
+                <button onclick="requestWithdrawal()" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1rem;">Initiate Withdrawal Request</button>
+              </div>
+            </div>
+
+            <!-- Tab 3: EMI Details -->
+            <div id="dash-tab-emi" style="display: none;">
+              <div style="background-color: #ffffff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 22px; box-shadow: var(--shadow-md);">
+                <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--color-primary); margin-bottom: 16px; border-bottom: 2px solid #e0f2fe; padding-bottom: 10px;">📊 Detailed EMI Schedule</h3>
+                
+                <div class="stylish-emi-grid">
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">🆔 Client ID</div>
+                    <div class="stylish-card-value" id="emi-client-id" style="color: #0369a1;">AC-1001</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">👤 Client Name</div>
+                    <div class="stylish-card-value" id="emi-client-name" style="font-size: 1.1rem;">-</div>
+                  </div>
+                  <div class="stylish-card" style="background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);">
+                    <div class="stylish-card-title">💰 Sanctioned Amount</div>
+                    <div class="stylish-card-value" id="emi-loanamt" style="color: #0284c7;">-</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">📅 Loan Tenure</div>
+                    <div class="stylish-card-value">24 Months</div>
+                  </div>
+                  <div class="stylish-card">
+                    <div class="stylish-card-title">📈 Interest Rate</div>
+                    <div class="stylish-card-value" style="color: #0284c7;">11.9% <span style="font-size: 0.8rem; font-weight: 600;">p.a.</span></div>
+                  </div>
+                  <div class="stylish-card" style="background: linear-gradient(135deg, #072545 0%, #0369a1 100%); color: #fff;">
+                    <div class="stylish-card-title" style="color: #bae6fd;">💳 Monthly EMI</div>
+                    <div class="stylish-card-value" style="color: #38bdf8; font-size: 1.35rem;">₹23,514 <span style="font-size: 0.75rem; color: #fff; font-weight: 400;">/ mo</span></div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 18px; padding: 14px; background: #f0f9ff; border-radius: 10px; border-left: 4px solid #0284c7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                  <span style="font-size: 0.88rem; font-weight: 700; color: #072545;">Verification Status:</span>
+                  <span id="emi-status-text" style="font-weight: 900; font-size: 0.95rem; color: #b45309; background: #fff; padding: 4px 12px; border-radius: 8px; border: 1px solid #f59e0b;">Pending Verification</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADMIN PANEL WRAPPER -->
+          <div id="admin-panel-wrapper" style="display: none;">
+            <div id="admin-login-box" style="max-width: 400px; margin: 20px auto; background: #f0f9ff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 24px; text-align: center;">
+              <h2 style="font-size: 1.3rem; font-weight: 900; color: var(--color-primary); margin-bottom: 6px;">Staff Admin Login</h2>
+              <div id="admin-login-error" style="display: none; background-color: #fee2e2; color: #b91c1c; padding: 8px; margin-bottom: 12px; font-size: 0.8rem;"></div>
+              <div class="form-group" style="text-align: left;"><label>Username</label><input type="text" id="input-admin-user" class="form-control"></div>
+              <div class="form-group" style="text-align: left;"><label>Password</label><input type="password" id="input-admin-pass" class="form-control"></div>
+              <button onclick="verifyAdminLogin()" class="btn btn-primary" style="width: 100%;">Login</button>
+            </div>
+            <div id="admin-dashboard-box" style="display: none;">
+              <h1 style="font-size: 1.6rem; font-weight: 900; color: var(--color-primary); margin-bottom: 10px;">Applications & Wallet Manager</h1>
+              <div id="admin-applications-list"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Zoom Preview Modal -->
+  <div class="modal-overlay" id="zoom-modal" onclick="closeZoomModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="zoom-modal-title" style="font-size: 1rem; color: #fff;">Document Preview</h3>
+        <button onclick="closeZoomModal()" style="background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+      <div style="padding: 20px; text-align: center;">
+        <img id="zoom-modal-img" src="" alt="Preview" style="max-width: 100%; max-height: 60vh; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT LOGIN MODAL -->
+  <div class="modal-overlay" id="client-login-modal">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem; color: #fff; font-weight: 900;">🔑 Client Portal Login</h3>
+        <button onclick="closeLoginModal()" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div style="padding: 20px;">
+        <div id="modal-login-error" style="display: none; background-color: #fee2e2; color: #b91c1c; padding: 8px; margin-bottom: 12px; font-size: 0.8rem; border-radius: 4px;"></div>
+        <div class="form-group"><label style="font-size: 0.78rem;">User ID / Email *</label><input type="email" id="login-input-user" class="form-control" placeholder="client@example.com"></div>
+        <div class="form-group"><label style="font-size: 0.78rem;">Password *</label><input type="password" id="login-input-pass" class="form-control" placeholder="Enter password"></div>
+        <button onclick="submitClientLogin()" class="btn btn-primary" style="width: 100%; padding: 12px;">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DOCUMENTS VIEW MODAL -->
+  <div class="modal-overlay" id="admin-docs-modal">
+    <div class="modal-card" style="max-width: 560px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem; color: #fff; font-weight: 900;" id="admin-docs-title">🪪 Uploaded Documents</h3>
+        <button onclick="closeAdminDocsModal()" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div id="admin-docs-content" style="padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-height: 400px; overflow-y: auto;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; margin-bottom: 36px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="height: 42px; width: 42px; border-radius: 12px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 900; font-size: 19px;">AC</div>
+            <span style="font-size: 1.35rem; font-weight: 900; color: #ffffff;">AVIVA <span style="color: var(--color-sky);">CAPITAL</span></span>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 18px;">
+            Aviva Capital Finance Ltd. is a premier non-banking financial corporation registered under Reserve Bank of India regulations.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: var(--color-sky); font-size: 1rem; font-weight: 800; margin-bottom: 16px;">Support & Assistance</h4>
+          <div style="color: #94a3b8; font-size: 0.85rem; display: flex; flex-direction: column; gap: 10px;">
+            <div>Please call Toll Free 1800-425-9900 or contact customer care.</div>
+          </div>
+        </div>
+        <div>
+          <h4 style="color: var(--color-sky); font-size: 1rem; font-weight: 800; margin-bottom: 16px;">Official Headquarters</h4>
+          <div style="color: #94a3b8; font-size: 0.85rem; display: flex; flex-direction: column; gap: 12px;">
+            <div>📍 Megh Towers, 3rd Floor, Poonamallee High Road, Maduravoyal, Chennai - 600095</div>
+            <div>📞 Toll Free: 1800-425-9900</div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; font-size: 0.78rem; color: #bae6fd;">
+        <div>© 2026 Aviva Capital Finance Ltd. (CIN: U65191TN1994PLC079235). All Rights Reserved.</div>
+        <div>RBI Registered NBFC • 256-bit Secure Encryption</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic with LocalStorage Persist -->
+  <script>
+    let currentStep = 1;
+    let employmentType = 'Salaried';
+    const uploadedImages = {
+      aadharFront: '',
+      aadharBack: '',
+      photo: '',
+      nomineeAadhar: ''
+    };
+
+    const initialDefaultApps = [
+      {
+        id: 'AC-1001', 
+        fullName: 'Ram Kumar', 
+        dob: '1992-05-14',
+        phone: '+91 98765 43210',
+        address: 'Plot 42, Green Avenue, Bandra West, Mumbai, MH - 400050',
+        email: 'ram@example.com', 
+        employment: 'Salaried',
+        loanAmount: '₹5,00,000', 
+        nomineeName: 'Priya Kumar',
+        nomineePhone: '+91 98765 11111',
+        bankName: 'HDFC Bank', 
+        bankType: 'Savings Account',
+        bankAcc: '5010023948576',
+        bankIfsc: 'HDFC0001234',
+        password: 'password123',
+        status: 'Pending', 
+        walletBalance: 0,
+        withdrawalState: 'none',
+        withdrawalDetails: null,
+        documents: {}
+      },
+      {
+        id: 'AC-1002', 
+        fullName: 'Khim Khom', 
+        dob: '1995-08-20',
+        phone: '+91 98765 00000',
+        address: 'MG Road, Kochi, Kerala',
+        email: 'khimkhom401@gmail.com', 
+        employment: 'Salaried',
+        loanAmount: '₹5,00,000', 
+        nomineeName: 'Rahul Khom',
+        nomineePhone: '+91 98765 22222',
+        bankName: 'SBI Bank', 
+        bankType: 'Savings Account',
+        bankAcc: '1234567890',
+        bankIfsc: 'SBIN0001234',
+        password: '123456',
+        status: 'Pending', 
+        walletBalance: 0,
+        withdrawalState: 'none',
+        withdrawalDetails: null,
+        documents: {}
+      }
+    ];
+
+    let applicationsStore = JSON.parse(localStorage.getItem('aviva_applications_store')) || initialDefaultApps;
+
+    function saveStoreToLocalStorage() {
+      localStorage.setItem('aviva_applications_store', JSON.stringify(applicationsStore));
+    }
+
+    let activeClientIndex = 0;
+    let countdownInterval = null;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      saveStoreToLocalStorage();
+      if (window.location.hash === '#admin') openAdminPanel();
+    });
+
+    function showError(msg) {
+      const el = document.getElementById('form-error-alert');
+      if (msg) {
+        el.innerText = '⚠️ ' + msg;
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
+      }
+    }
+
+    function goToStep(step) {
+      showError('');
+      currentStep = step;
+      document.getElementById('step-1-container').style.display = step === 1 ? 'block' : 'none';
+      document.getElementById('step-2-container').style.display = step === 2 ? 'block' : 'none';
+      document.getElementById('step-3-container').style.display = step === 3 ? 'block' : 'none';
+
+      const progressBar = document.getElementById('progress-bar-inner');
+      const stepPill = document.getElementById('step-pill-display');
+      const stepDesc = document.getElementById('step-desc-display');
+
+      stepPill.innerText = `Step ${step} of 3`;
+      progressBar.style.width = step === 1 ? '33.33%' : (step === 2 ? '66.66%' : '100%');
+
+      for (let i = 1; i <= 3; i++) {
+        const badge = document.getElementById(`badge-step-${i}`);
+        if (badge) {
+          if (i === step) {
+            badge.className = 'checklist-step active';
+            badge.style.opacity = '1';
+          } else {
+            badge.className = 'checklist-step';
+            badge.style.opacity = '0.6';
+          }
+        }
+      }
+
+      if (step === 1) {
+        stepDesc.innerText = "Enter the client's basic contact details to get started.";
+      } else if (step === 2) {
+        stepDesc.innerText = "Upload client identity proof and Nominee information.";
+      } else if (step === 3) {
+        stepDesc.innerText = "Set loan parameters and create secure client credentials.";
+        const email = document.getElementById('input-email').value;
+        document.getElementById('input-synced-email').value = email || 'client@example.com';
+        calculateEMI();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setEmploymentType(type) {
+      employmentType = type;
+      document.getElementById('btn-salaried').className = type === 'Salaried' ? 'btn btn-primary' : 'btn btn-outline';
+      document.getElementById('btn-self-employed').className = type === 'Self-Employed' ? 'btn btn-primary' : 'btn btn-outline';
+    }
+
+    function calculateEMI() {
+      const P = Number(document.getElementById('input-loan-amount').value) || 0;
+      const tenure = Number(document.getElementById('select-tenure').value) || 12;
+      const r = 0.119 / 12; 
+      
+      let emi = 0;
+      if (P > 0 && tenure > 0) {
+        emi = Math.round((P * r * Math.pow(1 + r, tenure)) / (Math.pow(1 + r, tenure) - 1));
+      }
+      const emiEl = document.getElementById('display-emi-amount');
+      if (emiEl) {
+        emiEl.innerText = '₹' + emi.toLocaleString('en-IN') + ' / mo';
+      }
+      return emi;
+    }
+
+    function processImageUpload(event, key) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          const maxDim = 1000;
+
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          uploadedImages[key] = compressedDataUrl;
+
+          const box = document.getElementById(`box-${key}`);
+          const tag = document.getElementById(`tag-${key}`);
+          const preview = document.getElementById(`preview-${key}`);
+          const placeholder = document.getElementById(`placeholder-${key}`);
+          const imgEl = document.getElementById(`img-${key}`);
+
+          if (box) box.classList.add('uploaded');
+          if (tag) tag.style.display = 'inline';
+          if (imgEl) imgEl.src = compressedDataUrl;
+          if (preview) preview.style.display = key === 'photo' || key === 'nomineeAadhar' ? 'flex' : 'block';
+          if (placeholder) placeholder.style.display = 'none';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage(key) {
+      uploadedImages[key] = '';
+      const box = document.getElementById(`box-${key}`);
+      const tag = document.getElementById(`tag-${key}`);
+      const preview = document.getElementById(`preview-${key}`);
+      const placeholder = document.getElementById(`placeholder-${key}`);
+      const imgEl = document.getElementById(`img-${key}`);
+
+      if (box) box.classList.remove('uploaded');
+      if (tag) tag.style.display = 'none';
+      if (imgEl) imgEl.src = '';
+      if (preview) preview.style.display = 'none';
+      if (placeholder) placeholder.style.display = 'flex';
+    }
+
+    function openZoomModal(key, title) {
+      const url = uploadedImages[key];
+      if (!url) return;
+      document.getElementById('zoom-modal-title').innerText = title;
+      document.getElementById('zoom-modal-img').src = url;
+      document.getElementById('zoom-modal').style.display = 'flex';
+    }
+
+    function closeZoomModal(event) {
+      if (!event || event.target.id === 'zoom-modal' || event.target.tagName === 'BUTTON') {
+        document.getElementById('zoom-modal').style.display = 'none';
+      }
+    }
+
+    function handleNextStep() {
+      showError('');
+
+      if (currentStep === 1) {
+        const name = document.getElementById('input-full-name').value.trim();
+        const email = document.getElementById('input-email').value.trim();
+        const phone = document.getElementById('input-phone').value.trim();
+        const dob = document.getElementById('input-dob').value.trim();
+        const address = document.getElementById('input-address').value.trim();
+
+        if (!name || !email || !phone || !dob || !address) {
+          showError('Please complete all fields in Step 1 (Name, Email, Phone, DOB, Address).');
+          return;
+        }
+        goToStep(2);
+      } else if (currentStep === 2) {
+        if (!uploadedImages.aadharFront || !uploadedImages.aadharBack || !uploadedImages.photo) {
+          showError('Please upload Aadhaar Front, Back, and Client Photo.');
+          return;
+        }
+        const nomName = document.getElementById('input-nominee-name').value.trim();
+        const nomPhone = document.getElementById('input-nominee-phone').value.trim();
+        if (!nomName || !nomPhone || !uploadedImages.nomineeAadhar) {
+          showError('Please fill Nominee details and upload Nominee Aadhaar.');
+          return;
+        }
+        goToStep(3);
+      } else if (currentStep === 3) {
+        const password = document.getElementById('input-password').value;
+        const confirmPassword = document.getElementById('input-confirm-password').value;
+        const bankName = document.getElementById('input-bank-name').value.trim();
+        const bankType = document.getElementById('input-bank-type').value;
+        const bankAcc = document.getElementById('input-bank-acc').value.trim();
+        const bankIfsc = document.getElementById('input-bank-ifsc').value.trim();
+
+        if (!bankName || !bankAcc || !bankIfsc) {
+          showError('Please complete disbursement bank account details.');
+          return;
+        }
+        if (!password || password.length < 6) {
+          showError('Password must be at least 6 characters long.');
+          return;
+        }
+        if (password !== confirmPassword) {
+          showError('Passwords do not match. Please re-enter.');
+          return;
+        }
+
+        const newRecord = {
+          id: 'AC-' + Math.floor(1000 + Math.random() * 9000),
+          fullName: document.getElementById('input-full-name').value.trim(),
+          dob: document.getElementById('input-dob').value.trim(),
+          phone: document.getElementById('input-phone').value.trim(),
+          address: document.getElementById('input-address').value.trim(),
+          email: document.getElementById('input-email').value.trim(),
+          employment: employmentType,
+          loanAmount: '₹' + Number(document.getElementById('input-loan-amount').value).toLocaleString('en-IN'),
+          nomineeName: document.getElementById('input-nominee-name').value.trim(),
+          nomineePhone: document.getElementById('input-nominee-phone').value.trim(),
+          bankName: bankName,
+          bankType: bankType,
+          bankAcc: bankAcc,
+          bankIfsc: bankIfsc,
+          password: password,
+          status: 'Pending',
+          walletBalance: 0,
+          withdrawalState: 'none',
+          withdrawalDetails: null,
+          documents: { ...uploadedImages }
+        };
+
+        const existingIdx = applicationsStore.findIndex(app => app.email.toLowerCase() === newRecord.email.toLowerCase());
+        if (existingIdx !== -1) {
+          applicationsStore[existingIdx] = newRecord;
+          activeClientIndex = existingIdx;
+        } else {
+          applicationsStore.push(newRecord);
+          activeClientIndex = applicationsStore.length - 1;
+        }
+
+        saveStoreToLocalStorage();
+
+        document.getElementById('registration-form').style.display = 'none';
+        document.getElementById('registration-success-card').style.display = 'block';
+        const successText = document.getElementById('success-message-text');
+        if (successText) {
+          successText.innerText = `Account for "${newRecord.fullName}" (${newRecord.email}) created successfully with Client ID: ${newRecord.id}.`;
+        }
+      }
+    }
+
+    function openLoginModal() { 
+      document.getElementById('client-login-modal').style.display = 'flex'; 
+    }
+    
+    function closeLoginModal() { 
+      document.getElementById('client-login-modal').style.display = 'none'; 
+    }
+
+    function submitClientLogin() {
+      const u = document.getElementById('login-input-user').value.trim();
+      const p = document.getElementById('login-input-pass').value.trim();
+      
+      applicationsStore = JSON.parse(localStorage.getItem('aviva_applications_store')) || applicationsStore;
+      
+      const foundIndex = applicationsStore.findIndex(app => app.email.toLowerCase() === u.toLowerCase() && app.password === p);
+
+      if (foundIndex !== -1) {
+        closeLoginModal();
+        openClientDashboard(foundIndex);
+      } else {
+        const err = document.getElementById('modal-login-error');
+        err.innerText = '⚠️ Invalid User ID or Password!';
+        err.style.display = 'block';
+      }
+    }
+
+    function openClientDashboard(idx = activeClientIndex) {
+      activeClientIndex = idx;
+      const client = applicationsStore[activeClientIndex];
+      
+      document.getElementById('registration-view-wrapper').style.display = 'none';
+      document.getElementById('registration-success-card').style.display = 'none';
+      const heroPanel = document.getElementById('hero-panel-side');
+      if (heroPanel) heroPanel.style.display = 'none';
+      document.getElementById('main-portal-card').style.gridTemplateColumns = '1fr';
+      
+      document.getElementById('admin-panel-wrapper').style.display = 'none';
+      document.getElementById('client-dashboard-wrapper').style.display = 'block';
+      
+      document.getElementById('header-menu-btn').style.display = 'flex';
+      document.getElementById('header-login-btn').style.display = 'none';
+
+      document.getElementById('dash-client-name-id').innerText = `Client: ${client.fullName} (${client.id})`;
+
+      // Personal Info fields (Tab Profile)
+      document.getElementById('info-id').innerText = client.id;
+      document.getElementById('info-name').innerText = client.fullName;
+      document.getElementById('info-dob').innerText = client.dob || '-';
+      document.getElementById('info-phone').innerText = client.phone;
+      document.getElementById('info-email').innerText = client.email;
+      document.getElementById('info-address').innerText = client.address;
+      document.getElementById('info-employment').innerText = client.employment;
+      document.getElementById('info-nominee-name').innerText = client.nomineeName || '-';
+      document.getElementById('info-nominee-phone').innerText = client.nomineePhone || '-';
+      document.getElementById('info-bank').innerText = client.bankName || '-';
+      document.getElementById('info-bank-type').innerText = client.bankType || 'Savings Account';
+      document.getElementById('info-acc').innerText = client.bankAcc || '-';
+      document.getElementById('info-ifsc').innerText = client.bankIfsc || '-';
+      
+      // Wallet Bank Details Box display
+      document.getElementById('withdraw-bank-name').innerText = client.bankName || '-';
+      document.getElementById('withdraw-bank-type').innerText = client.bankType || 'Savings Account';
+      document.getElementById('withdraw-bank-acc').innerText = client.bankAcc || '-';
+      document.getElementById('withdraw-bank-ifsc').innerText = client.bankIfsc || '-';
+
+      // Dashboard Home & EMI tab Info fields
+      document.getElementById('home-client-id').innerText = client.id;
+      document.getElementById('home-client-name').innerText = client.fullName;
+      document.getElementById('home-loanamt').innerText = client.loanAmount;
+
+      document.getElementById('emi-client-id').innerText = client.id;
+      document.getElementById('emi-client-name').innerText = client.fullName;
+      document.getElementById('emi-loanamt').innerText = client.loanAmount;
+
+      document.getElementById('display-wallet-balance').innerText = '₹' + client.walletBalance.toLocaleString('en-IN');
+      updateWalletNoticeUI();
+
+      const badgeContainer = document.getElementById('client-approval-badge-container');
+      const consolidationLine = document.getElementById('display-consolidation-line');
+      const homeStatusText = document.getElementById('home-status-text');
+      const emiStatusText = document.getElementById('emi-status-text');
+
+      if (client.status === 'Approved') {
+        badgeContainer.innerHTML = '<span class="status-badge status-approved">🟢 Loan Status: Approved</span>';
+        consolidationLine.innerHTML = 'Loan Consolidation Approval: Approved';
+        homeStatusText.innerText = 'Approved & Active';
+        homeStatusText.style.color = '#15803d';
+        homeStatusText.style.borderColor = '#22c55e';
+        emiStatusText.innerText = 'Approved & Active';
+        emiStatusText.style.color = '#15803d';
+      } else {
+        badgeContainer.innerHTML = '<span class="status-badge status-pending">🟡 Loan Status: Pending Verification</span>';
+        consolidationLine.innerHTML = 'Loan Consolidation Approval: Pending Verification';
+        homeStatusText.innerText = 'Pending Verification';
+        homeStatusText.style.color = '#b45309';
+        homeStatusText.style.borderColor = '#f59e0b';
+        emiStatusText.innerText = 'Pending Verification';
+        emiStatusText.style.color = '#b45309';
+      }
+      
+      switchDashboardTab('dashboard');
+    }
+
+    function toggleDropdownMenu() {
+      const menu = document.getElementById('nav-dropdown-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function switchDashboardTab(tab) {
+      document.getElementById('dash-tab-dashboard').style.display = tab === 'dashboard' ? 'block' : 'none';
+      document.getElementById('dash-tab-profile').style.display = tab === 'profile' ? 'block' : 'none';
+      document.getElementById('dash-tab-wallet').style.display = tab === 'wallet' ? 'block' : 'none';
+      document.getElementById('dash-tab-emi').style.display = tab === 'emi' ? 'block' : 'none';
+    }
+
+    function requestWithdrawal() {
+      const client = applicationsStore[activeClientIndex];
+      const withdrawInput = document.getElementById('input-withdraw-amount');
+      const amount = Number(withdrawInput.value) || 0;
+
+      if (amount <= 0 || amount > client.walletBalance) {
+        alert('Please enter a valid withdrawal amount within your wallet balance.');
+        return;
+      }
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString();
+      const timeStr = now.toLocaleTimeString();
+
+      client.walletBalance = 0;
+      document.getElementById('display-wallet-balance').innerText = '₹0';
+      withdrawInput.value = '';
+
+      client.withdrawalState = 'pending';
+      client.withdrawalDetails = {
+        amount: '₹' + amount.toLocaleString('en-IN'),
+        date: dateStr,
+        time: timeStr,
+        targetTime: Date.now() + 300000 // 5 minutes from now
+      };
+
+      saveStoreToLocalStorage();
+      updateWalletNoticeUI();
+    }
+
+    function updateWalletNoticeUI() {
+      const client = applicationsStore[activeClientIndex];
+      const notice = document.getElementById('wallet-status-notice');
+      
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      if (client.withdrawalState === 'pending' && client.withdrawalDetails) {
+        notice.style.display = 'block';
+        notice.style.backgroundColor = '#fef3c7';
+        notice.style.color = '#b45309';
+        notice.style.borderColor = '#f59e0b';
+
+        const details = client.withdrawalDetails;
+        
+        function updateTimer() {
+          const remaining = Math.max(0, Math.floor((client.withdrawalDetails.targetTime - Date.now()) / 1000));
+          const mins = Math.floor(remaining / 60);
+          const secs = remaining % 60;
+          const timeFormatted = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+          notice.innerHTML = `
+            ⏳ <strong>Withdraw Pending</strong><br>
+            Amount: <strong>${details.amount}</strong> | Date: ${details.date} | Time: ${details.time}<br>
+            <span style="font-size: 1.1rem; color: #dc2626; display:inline-block; margin-top:6px;">⏱️ Verification Time Remaining: <strong>${timeFormatted}</strong></span>
+          `;
+
+          if (remaining <= 0) {
+            clearInterval(countdownInterval);
+            client.withdrawalState = 'blocked';
+            saveStoreToLocalStorage();
+            updateWalletNoticeUI();
+          }
+        }
+
+        updateTimer();
+        countdownInterval = setInterval(updateTimer, 1000);
+
+      } else if (client.withdrawalState === 'blocked') {
+        notice.style.display = 'block';
+        notice.style.backgroundColor = '#fee2e2';
+        notice.style.color = '#dc2626';
+        notice.style.borderColor = '#f87171';
+        notice.innerHTML = '⚠️ <strong>Incorrect account details wallet blocked please contact customer support executive.</strong>';
+      } else {
+        notice.style.display = 'none';
+      }
+    }
+
+    function openAdminPanel() {
+      document.getElementById('registration-view-wrapper').style.display = 'none';
+      document.getElementById('client-dashboard-wrapper').style.display = 'none';
+      const heroPanel = document.getElementById('hero-panel-side');
+      if (heroPanel) heroPanel.style.display = 'none';
+      document.getElementById('main-portal-card').style.gridTemplateColumns = '1fr';
+      document.getElementById('admin-panel-wrapper').style.display = 'block';
+      document.getElementById('header-login-btn').style.display = 'none';
+    }
+
+    function verifyAdminLogin() {
+      const u = document.getElementById('input-admin-user').value;
+      const p = document.getElementById('input-admin-pass').value;
+      if (u === 'Ramadmin' && p === 'Ram1233') {
+        document.getElementById('admin-login-box').style.display = 'none';
+        document.getElementById('admin-dashboard-box').style.display = 'block';
+        renderAdminList();
+      } else {
+        const err = document.getElementById('admin-login-error');
+        err.innerText = '⚠️ Invalid Username or Password!';
+        err.style.display = 'block';
+      }
+    }
+
+    function renderAdminList() {
+      const list = document.getElementById('admin-applications-list');
+      list.innerHTML = '';
+      applicationsStore.forEach((app, i) => {
+        list.innerHTML += `<div style="background:#f0f9ff; padding:16px; margin-bottom:14px; border-radius:12px; border:1.5px solid #bae6fd;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <b>ID: ${app.id} - ${app.fullName}</b> (${app.status})
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">Full Name:</label>
+              <input type="text" id="admin-name-${i}" value="${app.fullName}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">Address:</label>
+              <input type="text" id="admin-address-${i}" value="${app.address}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">Phone:</label>
+              <input type="text" id="admin-phone-${i}" value="${app.phone}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">Loan Amount:</label>
+              <input type="text" id="admin-loanamt-${i}" value="${app.loanAmount}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">Bank Name:</label>
+              <input type="text" id="admin-bankname-${i}" value="${app.bankName || ''}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">Account Number:</label>
+              <input type="text" id="admin-bankacc-${i}" value="${app.bankAcc || ''}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">IFSC Code:</label>
+              <input type="text" id="admin-bankifsc-${i}" value="${app.bankIfsc || ''}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:bold;">Account Type:</label>
+              <input type="text" id="admin-banktype-${i}" value="${app.bankType || 'Savings Account'}" class="form-control" style="padding:6px; font-size:0.85rem;">
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; border-top:1px solid #e0f2fe; padding-top:10px;">
+            <div>
+              <label style="font-size:0.78rem; font-weight:bold;">Wallet Balance (₹):</label>
+              <input type="number" id="admin-wallet-${i}" value="${app.walletBalance}" style="width:110px; padding:6px;" class="form-control">
+            </div>
+            <button onclick="saveClientEdits(${i})" class="btn btn-primary" style="font-size:0.75rem; padding:8px 12px;">Save Edits</button>
+            <button onclick="toggleAdminApproval(${i})" class="btn btn-outline" style="font-size:0.75rem; padding:8px 12px;">${app.status === 'Approved' ? 'Mark Pending' : 'Approve Loan'}</button>
+            <button onclick="openAdminDocs(${i})" class="btn btn-outline" style="font-size:0.75rem; padding:8px 12px; background:#e0f2fe;">📁 View Docs</button>
+            <button onclick="openClientDashboard(${i})" class="btn btn-outline" style="font-size:0.75rem; padding:8px 12px;">View Portal</button>
+          </div>
+        </div>`;
+      });
+    }
+
+    function openAdminDocs(i) {
+      const app = applicationsStore[i];
+      const container = document.getElementById('admin-docs-content');
+      document.getElementById('admin-docs-title').innerText = `🪪 Documents: ${app.fullName} (${app.id})`;
+      container.innerHTML = '';
+
+      const docs = app.documents || {};
+      const labels = {
+        aadharFront: 'Aadhaar Front',
+        aadharBack: 'Aadhaar Back',
+        photo: 'Client Photo',
+        nomineeAadhar: 'Nominee Aadhaar'
+      };
+
+      for (let key in labels) {
+        const src = docs[key];
+        if (src) {
+          container.innerHTML += `<div style="background:#f8fbfe; border:1px solid #bae6fd; border-radius:8px; padding:8px; text-align:center;">
+            <div style="font-size:0.75rem; font-weight:bold; margin-bottom:4px;">${labels[key]}</div>
+            <img src="${src}" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc; cursor:pointer;" onclick="openZoomModalFromAdmin('${src}', '${labels[key]}')">
+          </div>`;
+        } else {
+          container.innerHTML += `<div style="background:#f8fbfe; border:1px solid #bae6fd; border-radius:8px; padding:8px; text-align:center;">
+            <div style="font-size:0.75rem; font-weight:bold; margin-bottom:4px;">${labels[key]}</div>
+            <div style="font-size:0.75rem; color:#94a3b8; padding:30px 0;">Not Uploaded</div>
+          </div>`;
+        }
+      }
+
+      document.getElementById('admin-docs-modal').style.display = 'flex';
+    }
+
+    function openZoomModalFromAdmin(url, title) {
+      document.getElementById('zoom-modal-title').innerText = title;
+      document.getElementById('zoom-modal-img').src = url;
+      document.getElementById('zoom-modal').style.display = 'flex';
+    }
+
+    function closeAdminDocsModal() {
+      document.getElementById('admin-docs-modal').style.display = 'none';
+    }
+
+    function saveClientEdits(i) {
+      application satire[i].fullName = document.getElementById(`admin-name-${i}`).value;
+      applicationsStore[i] .address = document.getElementById(`admin-address-${i}`).value;
+      applicationsStore[i].phone = document.getElementById(`admin-phone-${i}`).value;
+      applicationsStore[i].loanAmount = document.getElementById(`admin-loanamt-${i}`).value;
+      
+      applicationsStore[i].bankName = document.getElementById(`admin-bankname-${i}`).value;
+      applicationsStore[i].bankAcc = document.getElementById(`admin-bankacc-${i}`).value;
+      applicationsStore[i].bankIfsc = document.getElementById(`admin-bankifsc-${i}`).value;
+      applicationsStore[i].bankType = document.getElementById(`admin-banktype-${i}`).value;
+
+      const walletVal = Number(document.getElementById(`admin-wallet-${i}`).value) || 0;
+      applicationsStore[i].walletBalance = walletVal;
+
+      saveStoreToLocalStorage();
+      alert('Client details, bank info & wallet updated successfully by Admin!');
+      renderAdminList();
+    }
+
+    function toggleAdminApproval(i) {
+      applicationsStore[i].status = applicationsStore[i].status === 'Approved' ? 'Pending' : 'Approved';
+      saveStoreToLocalStorage();
+      renderAdminList();
+    }
+
+    function logoutClient() { location.reload(); }
+  </script>
+</body>
+</html>
