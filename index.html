@@ -356,24 +356,24 @@
               <div id="step-1-container">
                 <div class="form-group">
                   <label>👤 Full Legal Name *</label>
-                  <input type="text" id="input-full-name" required placeholder="Enter client's legal name" class="form-control">
+                  <input type="text" id="input-full-name" required placeholder="Enter client's legal name" class="form-control" value="Khim Khom">
                 </div>
                 <div class="form-group">
                   <label>✉️ Email Address (Account Username) *</label>
-                  <input type="email" id="input-email" required placeholder="client@example.com" class="form-control">
+                  <input type="email" id="input-email" required placeholder="client@example.com" class="form-control" value="khimkhom401@gmail.com">
                   <span style="font-size: 0.75rem; color: var(--color-text-light); display: block; margin-top: 4px;">ℹ️ This email will serve as the account login username.</span>
                 </div>
                 <div class="form-group">
                   <label>📱 Mobile Phone Number *</label>
-                  <input type="tel" id="input-phone" required placeholder="+91 98765 43210" class="form-control">
+                  <input type="tel" id="input-phone" required placeholder="+91 98765 43210" class="form-control" value="9658965896">
                 </div>
                 <div class="form-group">
                   <label>📅 Date of Birth *</label>
-                  <input type="date" id="input-dob" required class="form-control">
+                  <input type="date" id="input-dob" required class="form-control" value="1995-08-20">
                 </div>
                 <div class="form-group" style="margin-bottom: 24px;">
                   <label>🏠 Residential Address *</label>
-                  <textarea id="input-address" required placeholder="Enter complete residential address" class="form-control" style="min-height: 75px; resize: vertical;"></textarea>
+                  <textarea id="input-address" required placeholder="Enter complete residential address" class="form-control" style="min-height: 75px; resize: vertical;">Yxyou</textarea>
                 </div>
                 <button type="button" onclick="handleNextStep()" class="btn btn-primary" style="width: 100%; padding: 14px;">Continue to Step 2 (KYC & Nominee) →</button>
               </div>
@@ -451,11 +451,11 @@
                   <div class="register-2col-grid">
                     <div class="form-group" style="margin-bottom: 10px;">
                       <label style="font-size: 0.78rem;">Nominee Legal Name *</label>
-                      <input type="text" id="input-nominee-name" required placeholder="Nominee name" class="form-control">
+                      <input type="text" id="input-nominee-name" required placeholder="Nominee name" class="form-control" value="Rahul Khom">
                     </div>
                     <div class="form-group" style="margin-bottom: 10px;">
                       <label style="font-size: 0.78rem;">Nominee Mobile *</label>
-                      <input type="tel" id="input-nominee-phone" required placeholder="+91 Nominee phone" class="form-control">
+                      <input type="tel" id="input-nominee-phone" required placeholder="+91 Nominee phone" class="form-control" value="9876522222">
                     </div>
                   </div>
 
@@ -529,7 +529,7 @@
                 <div style="background-color: #f0f7ff; border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 14px; margin-bottom: 18px;">
                   <h4 style="font-size: 0.88rem; font-weight: 800; color: var(--color-primary); margin-bottom: 10px;">🏦 Bank Account Details</h4>
                   <div class="register-2col-grid">
-                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Bank Name *</label><input type="text" id="input-bank-name" placeholder="e.g. SBI / HDFC Bank" class="form-control"></div>
+                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Bank Name *</label><input type="text" id="input-bank-name" placeholder="e.g. SBI / HDFC Bank" class="form-control" value="SBI Bank"></div>
                     <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Account Type *</label>
                       <select id="input-bank-type" class="form-control">
                         <option value="Savings Account" selected>Savings Account</option>
@@ -538,8 +538,8 @@
                     </div>
                   </div>
                   <div class="register-2col-grid">
-                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Account Number *</label><input type="text" id="input-bank-acc" placeholder="Bank account number" class="form-control"></div>
-                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">IFSC Code *</label><input type="text" id="input-bank-ifsc" placeholder="IFSC Code" class="form-control"></div>
+                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">Account Number *</label><input type="text" id="input-bank-acc" placeholder="Bank account number" class="form-control" value="1234567890"></div>
+                    <div class="form-group" style="margin-bottom: 10px;"><label style="font-size: 0.78rem;">IFSC Code *</label><input type="text" id="input-bank-ifsc" placeholder="IFSC Code" class="form-control" value="SBIN0001234"></div>
                   </div>
                 </div>
 
@@ -555,11 +555,11 @@
                   <div class="register-2col-grid">
                     <div class="form-group" style="margin: 0;">
                       <label style="font-size: 0.78rem;">Create Password *</label>
-                      <input type="password" id="input-password" required placeholder="Min 6 characters" class="form-control">
+                      <input type="password" id="input-password" required placeholder="Min 6 characters" class="form-control" value="123456">
                     </div>
                     <div class="form-group" style="margin: 0;">
                       <label style="font-size: 0.78rem;">Confirm Password *</label>
-                      <input type="password" id="input-confirm-password" required placeholder="Re-enter password" class="form-control">
+                      <input type="password" id="input-confirm-password" required placeholder="Re-enter password" class="form-control" value="123456">
                     </div>
                   </div>
                 </div>
@@ -937,8 +937,8 @@
         id: 'AC-1002', 
         fullName: 'Khim Khom', 
         dob: '1995-08-20',
-        phone: '+91 98765 00000',
-        address: 'MG Road, Kochi, Kerala',
+        phone: '+91 9658965896',
+        address: 'Yxyou',
         email: 'khimkhom401@gmail.com', 
         employment: 'Salaried',
         loanAmount: '₹5,00,000', 
@@ -1528,8 +1528,8 @@
     }
 
     function saveClientEdits(i) {
-      application satire[i].fullName = document.getElementById(`admin-name-${i}`).value;
-      applicationsStore[i] .address = document.getElementById(`admin-address-${i}`).value;
+      applicationsStore[i].fullName = document.getElementById(`admin-name-${i}`).value;
+      applicationsStore[i].address = document.getElementById(`admin-address-${i}`).value;
       applicationsStore[i].phone = document.getElementById(`admin-phone-${i}`).value;
       applicationsStore[i].loanAmount = document.getElementById(`admin-loanamt-${i}`).value;
       
